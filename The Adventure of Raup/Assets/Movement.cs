@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
+    public GameObject gameOver, restartButton, score, terrain, enemySpawn;
+    
     Rigidbody2D rb;
     Animator anim;
 
     public int jump;
     public bool jumping;
+    float scoreValue;
 
     void Start()
     {
@@ -42,6 +46,30 @@ public class Movement : MonoBehaviour
         {
             anim.SetBool("isJumping", true);
             jumping = false;
+        }
+
+        if (!gameOver.activeSelf)
+        {
+            scoreValue = scoreValue + 0.5f;
+            score.GetComponent<Text>().text = "" + scoreValue.ToString();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "enemyGround")
+        {
+            anim.SetBool("isDeath", true);
+            terrain.GetComponent<Animator>().enabled = false;
+            enemySpawn.GetComponent<spawnerEnemyGround>().gameOver = true;
+
+            gameOver.SetActive(true);
+            restartButton.SetActive(true);
+
+            for (int i = 0; i < enemySpawn.transform.childCount; i++)
+            {
+                enemySpawn.transform.GetChild(i).GetComponent<EnemyMove>().moveSpeed = 0;
+            }
         }
     }
 
