@@ -4,21 +4,45 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    Rigidbody2D rb;
+    Animator anim;
+
     public int jump;
-    private bool jumping = true;
-    
-    // Start is called before the first frame update
+    public bool jumping;
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) && jumping == true)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0,jump);
+            rb.velocity = new Vector2(0,jump);
+        }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            anim.SetBool("isNunduk", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            anim.SetBool("isNunduk", false);
+        }
+        
+        if (transform.position.y < 0)
+        {
+            anim.SetBool("isJumping", false);
+            jumping = true;
+        }
+        else if (transform.position.y > 0)
+        {
+            anim.SetBool("isJumping", true);
+            jumping = false;
         }
     }
+
 }
