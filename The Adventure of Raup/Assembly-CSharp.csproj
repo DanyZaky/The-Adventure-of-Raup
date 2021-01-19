@@ -64,11 +64,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\EnemyAir.cs" />
-    <Compile Include="Assets\EnemyMove.cs" />
-    <Compile Include="Assets\Movement.cs" />
-    <Compile Include="Assets\SpawnEnemyAir.cs" />
-    <Compile Include="Assets\spawnerEnemyGround.cs" />
+    <Compile Include="Assets\Script\EnemyAir.cs" />
+    <Compile Include="Assets\Script\EnemyMove.cs" />
+    <Compile Include="Assets\Script\HighScore.cs" />
+    <Compile Include="Assets\Script\Movement.cs" />
+    <Compile Include="Assets\Script\SceneController.cs" />
+    <Compile Include="Assets\Script\SpawnEnemyAir.cs" />
+    <Compile Include="Assets\Script\soundManager.cs" />
+    <Compile Include="Assets\Script\spawnerEnemyGround.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
