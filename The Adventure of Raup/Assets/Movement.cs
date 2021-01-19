@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
-    public GameObject gameOver, restartButton, score, terrain, enemySpawn;
+    public GameObject gameOverText, restartButton, score, terrain, enemyGroundSpawn, enemyAirSpawn;
     
     Rigidbody2D rb;
     Animator anim;
 
     public int jump;
     public bool jumping;
-    float scoreValue;
+    int scoreValue;
 
     void Start()
     {
@@ -47,12 +47,6 @@ public class Movement : MonoBehaviour
             anim.SetBool("isJumping", true);
             jumping = false;
         }
-
-        if (!gameOver.activeSelf)
-        {
-            scoreValue = scoreValue + 0.5f;
-            score.GetComponent<Text>().text = "" + scoreValue.ToString();
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -61,14 +55,29 @@ public class Movement : MonoBehaviour
         {
             anim.SetBool("isDeath", true);
             terrain.GetComponent<Animator>().enabled = false;
-            enemySpawn.GetComponent<spawnerEnemyGround>().gameOver = true;
+            enemyGroundSpawn.GetComponent<spawnerEnemyGround>().gameOver = true;
+            enemyAirSpawn.GetComponent<SpawnEnemyAir>().gameOverr = true;
 
-            gameOver.SetActive(true);
+            gameOverText.SetActive(true);
             restartButton.SetActive(true);
 
-            for (int i = 0; i < enemySpawn.transform.childCount; i++)
+            for (int i = 0; i < enemyGroundSpawn.transform.childCount; i++)
             {
-                enemySpawn.transform.GetChild(i).GetComponent<EnemyMove>().moveSpeed = 0;
+                enemyGroundSpawn.transform.GetChild(i).GetComponent<EnemyMove>().moveSpeed = 0;
+            }
+
+            for (int i = 0; i < enemyAirSpawn.transform.childCount; i++)
+            {
+                enemyAirSpawn.transform.GetChild(i).GetComponent<EnemyAir>().moveAir = 0;
+            }
+        }
+
+        if (collision.gameObject.tag == "scoreNambah")
+        {
+            if (!gameOverText.activeSelf)
+            {
+                scoreValue += 1;
+                score.GetComponent<Text>().text = "" + scoreValue.ToString();
             }
         }
     }

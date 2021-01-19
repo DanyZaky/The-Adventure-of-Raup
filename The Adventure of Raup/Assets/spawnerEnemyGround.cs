@@ -20,7 +20,7 @@ public class spawnerEnemyGround : MonoBehaviour
     {
         while (!gameOver)
         {
-            float jarakObj = Random.Range(1, 4);
+            float jarakObj = Random.Range(2, 4);
             yield return new WaitForSeconds(jarakObj);
 
             if (!gameOver)
