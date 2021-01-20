@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
-    public GameObject gameOverText, restartButton, mainMenuButton, score, terrain, enemyGroundSpawn, enemyAirSpawn;
-    
+    public GameObject gameOverText, restartButton, mainMenuButton, score, terrain, enemyGroundSpawn, enemyAirSpawn, awan, jumpButton, nundukButton;
+    public AudioSource jumpSound, nundukSound, deathSound, terentod, BG,ketawa;
+
     Rigidbody2D rb;
     Animator anim;
 
@@ -36,6 +37,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow) || buttonNunduk == true)
         {
             anim.SetBool("isNunduk", true);
+            
         }
         else if (Input.GetKeyUp(KeyCode.DownArrow) || buttonNunduk == false)
         {
@@ -60,12 +62,16 @@ public class Movement : MonoBehaviour
         {
             anim.SetBool("isDeath", true);
             terrain.GetComponent<Animator>().enabled = false;
+            awan.GetComponent<Animator>().enabled = false;
             enemyGroundSpawn.GetComponent<spawnerEnemyGround>().gameOver = true;
             enemyAirSpawn.GetComponent<SpawnEnemyAir>().gameOverr = true;
 
             gameOverText.SetActive(true);
             restartButton.SetActive(true);
             mainMenuButton.SetActive(true);
+
+            jumpButton.SetActive(false);
+            nundukButton.SetActive(false);
 
             for (int i = 0; i < enemyGroundSpawn.transform.childCount; i++)
             {
@@ -81,6 +87,12 @@ public class Movement : MonoBehaviour
             {
                 PlayerPrefs.SetInt("highscore", scoreValue);
             }
+
+            deathSound.Play();
+            ketawa.Play();
+            terentod.Play();
+            BG.Stop();
+
         }
 
         if (collision.gameObject.tag == "scoreNambah")
@@ -96,11 +108,13 @@ public class Movement : MonoBehaviour
     public void tekanButtonJump()
     {
         buttonJump = true;
+        jumpSound.Play();
     }
 
     public void tekanButtonNunduk()
     {
         buttonNunduk = true;
+        nundukSound.Play();
     }
     public void lepasButtonNunduk()
     {
