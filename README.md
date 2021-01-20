@@ -17,5 +17,5 @@ Android (minimum):
 
 ## Link Download
 ```
-Coming Soon . . .
+https://drive.google.com/file/d/1vOkTX5sWk68nXYr_tKw5_m2WCG3syAXF/view?usp=sharing
 ```
