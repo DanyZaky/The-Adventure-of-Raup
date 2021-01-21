@@ -3,7 +3,7 @@ My First Game Made using [Unity 2D](https://unity.com/)
 
 
 ## About
-Bercerita seorang pemuda benama [Raup](https://github.com/pahry182) yang sedang berpertualang dan ditengah perjalanannya akan bertema banyak monster jahat yang akan menyerang pemuda ini. Akankah [Raup](https://github.com/pahry182) bisa menyelesaikan misinya?
+Bercerita seorang pemuda benama [Raup](https://github.com/pahry182) yang sedang berpertualang dan ditengah perjalanannya akan bertemu banyak monster jahat yang akan menyerang pemuda ini. Akankah [Raup](https://github.com/pahry182) bisa menyelesaikan misinya?
 
 
 ## System Requirement
