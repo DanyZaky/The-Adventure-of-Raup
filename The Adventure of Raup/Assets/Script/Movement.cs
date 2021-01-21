@@ -62,7 +62,7 @@ public class Movement : MonoBehaviour
         {
             anim.SetBool("isDeath", true);
             terrain.GetComponent<Animator>().enabled = false;
-            awan.GetComponent<Animator>().enabled = false;
+            awan.SetActive(false);
             enemyGroundSpawn.GetComponent<spawnerEnemyGround>().gameOver = true;
             enemyAirSpawn.GetComponent<SpawnEnemyAir>().gameOverr = true;
 

@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    public bool buttonRestart, buttonMainMenu, buttonPlay, buttonExit, buttonSetting, buttonBackSetting;
+    public bool buttonRestart, buttonMainMenu, buttonPlay, buttonExit, buttonSetting, buttonBackSetting, buttonReset;
 
-    public GameObject tampilanSetting, tampilanPlay, viewSetting, viewExit;
+    public GameObject tampilanSetting, tampilanBackButton, tampilanPlay, viewSetting, viewExit, viewReset;
 
     public AudioSource touch;
     void Update()
@@ -19,34 +19,44 @@ public class SceneController : MonoBehaviour
 
         if (buttonMainMenu == true)
         {
-            Application.LoadLevel(0);
+            Application.LoadLevel(1);
             
         }
 
         if (buttonPlay == true)
         {
-            Application.LoadLevel(1);
+            Application.LoadLevel(2);
         }
 
         if (buttonSetting == true)
         {
             viewSetting.SetActive(false);
             viewExit.SetActive(false);
+            viewReset.SetActive(true);
             tampilanSetting.SetActive(true);
+            tampilanBackButton.SetActive(true);
             tampilanPlay.SetActive(false);
+            
         }
 
         if (buttonBackSetting == true)
         {
             tampilanSetting.SetActive(false);
+            tampilanBackButton.SetActive(false);
             tampilanPlay.SetActive(true);
             viewSetting.SetActive(true);
             viewExit.SetActive(true);
+            viewReset.SetActive(false);
         }
 
         if (buttonExit == true)
         {
             Application.Quit();
+        }
+
+        if (buttonReset == true)
+        {
+            PlayerPrefs.DeleteKey("highscore");
         }
     }
 
@@ -78,6 +88,12 @@ public class SceneController : MonoBehaviour
     public void tekanButtonBackSetting()
     {
         buttonBackSetting = true;
+        touch.Play();
+    }
+
+    public void tekanResest()
+    {
+        buttonReset = true;
         touch.Play();
     }
 }
